@@ -1,7 +1,7 @@
 import React from "react";
 import Hero from "../components/Hero";
 import About from "../components/About";
-import Faq from "../components/Faq";
+import FrequentlyAskedQuestions from "../components/FrequentlyAskedQuestions";
 import Cta from "../components/Cta";
 import Testimonial from "../components/Testimonial";
 import FeaturedProperties from "../components/FeaturedProperties";
@@ -12,7 +12,7 @@ const Home = () => {
       <Hero />
       <About />
       <FeaturedProperties />
-      <Faq />
+      <FrequentlyAskedQuestions />
       <Cta />
       <Testimonial />
     </div>

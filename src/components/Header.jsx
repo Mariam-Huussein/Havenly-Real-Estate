@@ -1,15 +1,40 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Navbar from "./Navbar";
+import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
+import { useAppContext } from "../context/AppContext";
 const Header = () => {
   const [active, setActive] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
   const [showSearch, setshowSearch] = useState(false);
   const location = useLocation();
+  const { navigate } = useAppContext();
+  const { user } = useUser();
+  const { openSignIn } = useClerk();
+
+  const BookingIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 36 36"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-Linecap="round"
+      stroke-Linejoin="round"
+      class="lucide lucide-scroll-text-icon lucide-scroll-text"
+    >
+      <path d="M15 12h-5" />
+      <path d="M15 8h-5" />
+      <path d="M19 17V5a2 2 0 0 0-2-2H4 12" />
+      <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1000-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 OV5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" />
+    </svg>
+  );
 
   const toggleMenu = () => setMenuOpened((prev) => !prev);
 
@@ -48,13 +73,11 @@ const Header = () => {
               <Link
                 to={"/"}
                 data-discover="true"
-                className={`${!active && "invert"} h-11 flex items-center gap-2 px-3 py-2 rounded-full uppercase text-sm font-bold `}
+                className={`${
+                  !active && "invert"
+                } h-11 flex items-center gap-2 px-3 py-2 rounded-full uppercase text-sm font-bold `}
               >
-                <img
-                  alt=""
-                  className="h-11"
-                  src="/images/logo-light.svg"
-                />
+                <img alt="" className="h-11" src="/images/logo-light.svg" />
                 Havenly
               </Link>
             </div>
@@ -114,12 +137,30 @@ const Header = () => {
                   />
                 )}
               </div>
+              {/* User */}
               <div className="group relative">
                 <div>
-                  <button className="btn-secondary flexCenter gap-x-2 rounded-full">
-                    Login
-                    <PersonIcon />
-                  </button>
+                  {user ? (
+                    <UserButton
+                    appearance={{}}
+                    >
+                      <UserButton.MenuItems>
+                        <UserButton.Action
+                          label="My Bookings"
+                          labelIcon={<BookingIcon />}
+                          onClick={() => navigate("/my-bookings")}
+                        />
+                      </UserButton.MenuItems>
+                    </UserButton>
+                  ) : (
+                    <button
+                      onClick={openSignIn}
+                      className="btn-secondary flexCenter gap-x-2 rounded-full"
+                    >
+                      Login
+                      <PersonIcon />
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

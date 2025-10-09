@@ -2,10 +2,6 @@ import React from "react";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import TuneIcon from "@mui/icons-material/Tune";
-import BedIcon from "@mui/icons-material/Bed";
-import BathtubIcon from "@mui/icons-material/Bathtub";
-import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-import StraightenIcon from "@mui/icons-material/Straighten";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";

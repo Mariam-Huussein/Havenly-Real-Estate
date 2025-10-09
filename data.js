@@ -1,7 +1,7 @@
 export const dummyProperties = [
   {
-    _id: "67f7647c197ac559e4089b96",
-    agency: "Havenly Agency",
+    id: "67f7647c197ac559e4089b96",
+    agency:{ name: "Havenly Agency", phone:"0123456789", email:"agency@mail.com"},
     title: "Oceanview Oasis Serenity Escape",
     description:
       "Discover a harmonious blend of modern luxury and timeless elegance. Nestled in the heart of this area, our newest residency offers a sanctuary where every detail is meticulously crafted to elevate your lifestyle. From breathtaking architectural designs to unparalleled amenities, each aspect is thoughtfully curated to redefine the meaning of home. Step into a world of sophistication as you explore our spacious and meticulously designed residences, each boasting premium finishes and panoramic views that inspire awe. Whether you seek a serene retreat to unwind or a vibrant community to connect with, Offers an array of lifestyle amenities tailored to your every need.",
@@ -19,13 +19,12 @@ export const dummyProperties = [
     amenities: ["Balcony", "High-Speed Internet", "Backyard"],
     images: ["/images/img1.png", "/images/pImg2.png", "/images/pImg3.png", "/images/pImg4.png"],
     isAvailable: true,
-    status: "available",
     createdAt: "2025-04-10T06:26:04.013Z",
     updatedAt: "2025-04-10T06:26:04.013Z",
   },
   {
-    _id: "67f76452197ac559e4089b8e",
-    agency: "Havenly Agency",
+    id: "67f76452197ac559e4089b8e",
+    agency:{ name: "Havenly Agency", phone:"0123456789", email:"agency@mail.com"},
     title: "Mountain Majesty Tranquility Haven",
     description:
       "This villa is a stunning masterpiece of luxury and art. Adorned with two helipads for convenient aerial access, the expansive interiors provide ample space for relaxation and entertainment. The villa offers panoramic sea views that can be enjoyed from multiple vantage points, while the walls are graced with astonishing, bold artworks that add a touch of sophistication and elegance to the entire property. Every detail of this villa exudes opulence and grandeur, making it a truly exceptional and unique residence.",
@@ -43,13 +42,12 @@ export const dummyProperties = [
     amenities: ["Backyard", "Garage", "Fireplace"],
     images: ["/images/img2.png", "/images/pImg3.png", "/images/pImg4.png", "/images/pImg2.png"],
     isAvailable: true,
-    status: "available",
     createdAt: "2025-04-10T06:25:22.593Z",
     updatedAt: "2025-04-10T06:25:22.593Z",
   },
   {
-    _id: "67f76406197ac559e4089b82",
-    agency: "Havenly Agency",
+    id: "67f76406197ac559e4089b82",
+    agency:{ name: "Havenly Agency", phone:"0123456789", email:"agency@mail.com"},
     title: "Urban Elegance Sophistication Haven",
     description:
       "This villa is a stunning masterpiece of luxury and art. Adorned with two helipads for convenient aerial access, the expansive interiors provide ample space for relaxation and entertainment. The villa offers panoramic sea views that can be enjoyed from multiple vantage points, while the walls are graced with astonishing, bold artworks that add a touch of sophistication and elegance to the entire property. Every detail of this villa exudes opulence and grandeur, making it a truly exceptional and unique residence.",
@@ -67,13 +65,12 @@ export const dummyProperties = [
     amenities: ["Fitness Center", "Terrace", "Parking"],
     images: ["/images/img3.png", "/images/pImg4.png", "/images/pImg3.png", "/images/pImg2.png"],
     isAvailable: true,
-    status: "available",
     createdAt: "2025-04-10T06:24:06.285Z",
     updatedAt: "2025-04-10T06:24:06.285Z",
   },
   {
-    _id: "67f763d8197ac559e4089b7a",
-    agency: "Havenly Agency",
+    id: "67f763d8197ac559e4089b7a",
+    agency:{ name: "Havenly Agency", phone:"0123456789", email:"agency@mail.com"},
     title: "Garden Grove Oasis Retreat Haven",
     description:
       "This villa is a stunning masterpiece of luxury and art. Adorned with two helipads for convenient aerial access, the expansive interiors provide ample space for relaxation and entertainment. The villa offers panoramic sea views that can be enjoyed from multiple vantage points, while the walls are graced with astonishing, bold artworks that add a touch of sophistication and elegance to the entire property. Every detail of this villa exudes opulence and grandeur, making it a truly exceptional and unique residence.",
@@ -91,13 +88,12 @@ export const dummyProperties = [
     amenities: ["Terrace", "Backyard", "Fitness Center"],
     images: ["/images/img4.png", "/images/pImg2.png", "/images/pImg3.png", "/images/pImg4.png"],
     isAvailable: true,
-    status: "available",
     createdAt: "2025-04-10T06:23:20.252Z",
     updatedAt: "2025-04-10T06:23:20.252Z",
   },
   {
-    _id: "67f765aa197ac559e4089b9c",
-    agency: "Havenly Agency",
+    id: "67f765aa197ac559e4089b9c",
+    agency:{ name: "Havenly Agency", phone:"0123456789", email:"agency@mail.com"},
     title: "Seaside Bliss Modern Retreat",
     description:
       "Experience seaside living with contemporary design and ocean views from every room. Perfect for vacation rentals or permanent residence. Offers panoramic sea views that can be enjoyed from multiple vantage points, while the walls are graced with astonishing, bold artworks that add a touch of sophistication and elegance to the entire property. Every detail of this villa exudes opulence and grandeur, making it a truly exceptional and unique residence.",
@@ -115,14 +111,13 @@ export const dummyProperties = [
     amenities: ["Swimming Pool", "Balcony", "Private Beach"],
     images: ["/images/img5.png", "/images/pImg3.png", "/images/pImg2.png", "/images/pImg4.png"],
     isAvailable: true,
-    status: "available",
     createdAt: "2025-04-10T06:27:30.013Z",
     updatedAt: "2025-04-10T06:27:30.013Z",
   },
 
   {
-    _id: "67f765f4197ac559e4089ba4",
-    agency: "Havenly Agency",
+    id: "67f765f4197ac559e4089ba4",
+    agency:{ name: "Havenly Agency", phone:"0123456789", email:"agency@mail.com"},
     title: "Countryside Charm Rustic Escape",
     description:
       "Enjoy a peaceful countryside retreat with spacious gardens, natural wood interiors, and cozy fireplaces. offers panoramic sea views that can be enjoyed from multiple vantage points, while the walls are graced with astonishing, bold artworks that add a touch of sophistication and elegance to the entire property. Every detail of this villa exudes opulence and grandeur, making it a truly exceptional and unique residence.",
@@ -140,7 +135,6 @@ export const dummyProperties = [
     amenities: ["Garden", "Fireplace", "Parking"],
     images: ["/images/img6.png", "/images/pImg2.png", "/images/pImg3.png", "/images/pImg4.png"],
     isAvailable: true,
-    status: "available",
     createdAt: "2025-04-10T06:28:50.013Z",
     updatedAt: "2025-04-10T06:28:50.013Z",
   },

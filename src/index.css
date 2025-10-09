@@ -68,31 +68,36 @@ body {
   }
 
   .active-link {
-    @apply relative after:w-2/5 after:h-1 after:rounded-full after:bg-secondary after:absolute after:-bottom-0.5 after:right-3;
+    @apply relative after:h-1 after:rounded-full after:bg-secondary after:absolute after:-bottom-0.5;
+  }
+  .active-link::after {
+    right: 50%;
+    transform: translateX(50%);
+    width: 80%;
   }
 
   .h1 {
-    @apply text-[45px] md:text-[51px] font-bold;
+    @apply md:text-[45px] lg:text-[51px] sm:text-[36] font-bold;
   }
 
   .h2 {
-    @apply text-[31px] md:text-[38px] font-bold;
+    @apply md:text-[31px] lg:text-[38px] sm:text-[25px] font-bold;
   }
 
   .h3 {
-    @apply text-[24px] md:text-[28px] font-bold;
+    @apply md:text-[24px] lg:text-[28px] sm:text-[20px] font-bold;
   }
 
   .h4 {
-    @apply text-[17px] md:text-[19px] font-bold;
+    @apply md:text-[17px] lg:text-[19px] sm:text-[14px] font-bold;
   }
 
   .h5 {
-    @apply text-[14px] md:text-[16px] font-bold;
+    @apply md:text-[14px] lg:text-[16px] sm:text-[12px] font-bold;
   }
 
   p {
-    @apply leading-[1.3] text-[14px] text-gray-50;
+    @apply md:leading-[1.3] text-[14px] text-gray-50;
   }
 
   /* FONTS */

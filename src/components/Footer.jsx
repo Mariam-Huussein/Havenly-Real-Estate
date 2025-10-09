@@ -1,114 +1,65 @@
-import {useState} from "react";
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import XIcon from '@mui/icons-material/X';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { useState } from "react";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import XIcon from "@mui/icons-material/X";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Link } from "react-router-dom";
 const Footer = () => {
-  const [emailInputValue, setEmailInputValue] = useState("")
+  const [emailInputValue, setEmailInputValue] = useState("");
   return (
     <>
-      <footer className="pt-16 xl:pt-20 w-full text-gray-500 bg-[#fffbee]">
-        <div className="max-padd-container">
-          <div className="flex flex-wrap justify-between gap-12 md:gap-6">
-            <div className="max-w-80">
-              <div className="flex mb-4">
-              <Link to="/" data-discover="true" className="flex items-center gap-2 px-3 py-2 rounded-full uppercase text-sm font-bold text-[#333]">
-                <img
-                  alt=""
-                  className=" h-11"
-                  src="/images/logo-light.svg"
-                />
-                Havenly
-              </Link>
-              </div>
-              <p className="text-sm">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text
-              </p>
-              <div className="flex items-center gap-3 mt-4">
-                <FacebookIcon/>
-                <InstagramIcon/>
-                <XIcon/>
-                <LinkedInIcon/>
-              </div>
-            </div>
-            <div>
-              <h4 className="h4 text-black/80">COMPANY</h4>
-              <ul className="mt-3 flex flex-col gap-2 text-sm">
-                <li>
-                  <a href="#">About</a>
-                </li>
-                <li>
-                  <a href="#">Careers</a>
-                </li>
-                <li>
-                  <a href="#">Press</a>
-                </li>
-                <li>
-                  <a href="#">Blog</a>
-                </li>
-                <li>
-                  <a href="#">Partners</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="h4 text-black/80">SUPPORT</h4>
-              <ul className="mt-3 flex flex-col gap-2 text-sm">
-                <li>
-                  <a href="#">Help Center</a>
-                </li>
-                <li>
-                  <a href="#">Safety Information</a>
-                </li>
-                <li>
-                  <a href="#">Cancellation Options</a>
-                </li>
-                <li>
-                  <a href="#">Contact Us</a>
-                </li>
-                <li>
-                  <a href="#">Accessibility</a>
-                </li>
-              </ul>
-            </div>
-            <div className="max-w-80">
-              <h4 className="h4 text-black/80">STAY UPDATED</h4>
-              <p className="mt-3 text-sm">
-                Subscribe to our newsletter for inspiration and special offers.
-              </p>
-              <div className="flex items-center border pl-4 gap-2 bg-white border-gray-500/30 h-[46px] rounded-full overflow-hidden max-w-md w-full mt-6">
-                <input
-                  placeholder="Enter your email.."
-                  className="w-full h-full outline-none text-sm text-gray-500"
-                  type="text"
-                />
-                <button
-                  type="submit"
-                  className="btn-dark font-medium !px-3.5 py-2 mr-0.5 "
-                >
-                  Subscribe
-                </button>
-              </div>
-            </div>
+      <footer className="px-6 md:px-16 lg:px-24 xl:px-32 pt-16 lg:pt-20 w-full text-gray-500 bg-[#fffbee]">
+        <div className="flex flex-col md:flex-row items-center justify-between w-full gap-10 border-b border-gray-500/30 pb-6">
+          <div className="md:max-w-96">
+            <Link
+              to="/"
+              className="flex items-center gap-2 py-2 rounded-full uppercase text-sm font-bold text-[#333] w-[fit-content]"
+            >
+              <img
+                alt="Havenly Logo"
+                className="w-16"
+                src="/images/logo-light.svg"
+              />
+              <span className="h3 capitalize">Havenly</span>
+            </Link>
+            <p className="mt-2 ps-2 text-sm">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
           </div>
-          <div className="flex flex-col md:flex-row gap-2 items-center justify-between py-5 mt-8">
-            <a href="#"> 2025 Nestorria. All rights reserved.</a>
-            <ul className="flex items-center gap-4">
-              <li>
-                <a href="#">Privacy</a>
-              </li>
-              <li>
-                <a href="#">Terms</a>
-              </li>
-              <li>
-                <a href="#">Sitemap</a>
-              </li>
-            </ul>
+          <div className="flex-1 flex items-start md:justify-end gap-20">
+            <div>
+              <h2 className="font-semibold mb-5 text-gray-800">Company</h2>
+              <ul className="text-sm space-y-2">
+                <li>
+                  <Link to={"/"}>Home</Link>
+                </li>
+                <li>
+                  <a href="about">About us</a>
+                </li>
+                <li>
+                  <Link to={"/contact"}>Contact us</Link>
+                </li>
+                <li>
+                  <Link to={"/listing"}>Listing</Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2 className="font-semibold mb-5 text-gray-800">Get in touch</h2>
+              <div className="text-sm space-y-2">
+                <p>+1-212-456-7890</p>
+                <p>contact@example.com</p>
+              </div>
+            </div>
           </div>
         </div>
+        <p className="pt-4 text-center text-xs md:text-sm pb-5">
+          Copyright 2024 © <Link to={"/"}>Havenly</Link>. All
+          Right Reserved.
+        </p>
       </footer>
     </>
   );

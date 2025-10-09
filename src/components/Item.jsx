@@ -9,7 +9,7 @@ const Item = ({ property }) => {
   return (
     <>
       <Link
-        to={"/listing" + property.id}
+        to={"/listing/" + property.id}
         className="block rounded-lg bg-white ring-1 ring-slate-900/5 cursor-pointer"
       >
         {/* Image */}
