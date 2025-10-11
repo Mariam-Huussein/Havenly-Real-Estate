@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useAppContext } from "../context/AppContext";
+import { usePropertyContext } from "../context/PropertyContext";
 import { useParams } from "react-router-dom";
 import PropertyImages from "../components/PropertyImages";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
@@ -16,7 +16,7 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import EmailIcon from "@mui/icons-material/Email";
 
 const PropertyDetails = () => {
-  const { properties } = useAppContext();
+  const { properties } = usePropertyContext();
   const [property, setProperty] = useState(null);
   const { id } = useParams();
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useAppContext } from "../context/AppContext";
+import { usePropertyContext } from "../context/PropertyContext";
 import Item from "./../components/Item";
 import Checkbox from "@mui/material/Checkbox";
 import FormControl from "@mui/material/FormControl";
@@ -7,12 +7,10 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useFilteredProperties } from "../hooks/useFilteredProperties";
-import Loader from "../components/Loader";
 import Pagination from "@mui/material/Pagination";
-import { Link, Navigate } from "react-router-dom";
 
 const Listing = () => {
-  const { properties } = useAppContext();
+  const { properties } = usePropertyContext();
 
   const sortOptions = ["All", "Relevant", "Low to High", "High to Low"];
 

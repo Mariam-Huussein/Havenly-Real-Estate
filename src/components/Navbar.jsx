@@ -16,7 +16,6 @@ const Navbar = ({ setMenuOpened, containerStyles }) => {
           <NavLink
             onClick={() => {
               setMenuOpened(false);
-              // scrollTo(0, 0);
               scrollTo({ top: 0, behavior: "smooth" });
             }}
             key={link.title}

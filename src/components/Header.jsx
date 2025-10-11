@@ -6,8 +6,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Navbar from "./Navbar";
-import { handleLogout } from "./../helpers/authHelpers";
 import AuthModal from "./AuthModal/AuthModal";
+import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
   const [active, setActive] = useState(false);
@@ -15,21 +15,7 @@ const Header = () => {
   const [showSearch, setshowSearch] = useState(false);
   const location = useLocation();
   const [showAuthModal, setShowAuthModal] = useState(false);
-
-  const handleUserLogout = () => {
-    handleLogout(() => {
-      window.location.href = "/";
-    });
-  };
-
-  // useEffect(() => {
-  //   const storedUser = localStorage.getItem("user");
-  //   if (storedUser) {
-  //     setUser(JSON.parse(storedUser));
-  //   }
-  // }, []);
-
-  const [user, setUser] = useState(null);
+  const { user, logout } = useAuth();
 
   const toggleMenu = () => setMenuOpened((prev) => !prev);
 
@@ -137,7 +123,7 @@ const Header = () => {
                 <div>
                   {user ? (
                     <button
-                      onClick={() => handleUserLogout()}
+                      onClick={logout}
                       className="btn-secondary flexCenter gap-x-2 rounded-full"
                     >
                       Log Out
@@ -157,9 +143,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        {showAuthModal && (
-          <AuthModal onClose={() => setShowAuthModal(false)} />
-        )}
+        {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
       </header>
     </>
   );

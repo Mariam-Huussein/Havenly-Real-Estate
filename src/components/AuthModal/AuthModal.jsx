@@ -4,8 +4,17 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import ForgotPasswordForm from "./ForgotPasswordForm";
 import ResetPasswordForm from "./ResetPasswordForm";
+import {
+  handleLogin,
+  handleRegister,
+  handleForgotPassword,
+  handleResetPassword,
+} from "./../../helpers/authHelpers";
+import { useAuth } from "../../context/AuthContext";
+
 
 const AuthModal = ({ onClose }) => {
+  const { setUser, setToken } = useAuth();
   const [state, setState] = useState("login");
   const [formData, setFormData] = useState({
     userName: "",
@@ -24,21 +33,15 @@ const AuthModal = ({ onClose }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (state === "login") handleLogin(formData, setLoading, setError, onClose);
+  const handleSubmit = (data) => {
+    if (state === "login")
+      handleLogin(data, setLoading, setError, onClose, setUser, setToken);
     else if (state === "register")
-      handleRegister(formData, setLoading, setError, setState);
+      handleRegister(data, setLoading, setError, setState);
     else if (state === "forgot")
       otpSent
-        ? handleResetPassword(
-            formData,
-            setLoading,
-            setError,
-            setOtpSent,
-            setState
-          )
-        : handleForgotPassword(formData, setLoading, setError, setOtpSent);
+        ? handleResetPassword(data, setLoading, setError, setOtpSent, setState)
+        : handleForgotPassword(data, setLoading, setError, setOtpSent);
   };
 
   return (
@@ -72,6 +75,7 @@ const AuthModal = ({ onClose }) => {
         </p>
 
         {/* Dynamic Form Rendering */}
+
         {state === "login" && (
           <LoginForm
             formData={formData}

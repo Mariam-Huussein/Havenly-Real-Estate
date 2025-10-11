@@ -6,30 +6,42 @@ import {
 } from "../services/authService";
 import { toast } from "react-toastify";
 
-export const handleLogin = async (formData, setLoading, setError, onClose, setUser) => {
+export const handleLogin = async (
+  formData,
+  setLoading,
+  setError,
+  onClose,
+  setUser,
+  setToken
+) => {
   setLoading(true);
   setError("");
+
   try {
     const res = await login({
       email: formData.email,
       password: formData.password,
     });
 
-    const { token, user } = res.data;
 
-    if (!token || !user) {
-      throw new Error("Invalid response from server");
-    }
+    console.log("Login Response:", res);
 
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(user));
+    const { token, userId, userName } = res.data.data;
 
+    if (!token) throw new Error("Invalid response from server");
+
+    // نكوّن object user ونخزّنه في الـ context + localStorage
+    const user = { id: userId, userName };
     setUser(user);
+    setToken(token);
 
     toast.success("Login successful! 🎉");
     onClose();
+
   } catch (err) {
-    const errorMessage = err.response?.data?.message || "Invalid email or password";
+    console.error("Login error:", err.response?.data || err.message);
+    const errorMessage =
+      err.response?.data?.message || "Invalid email or password";
     setError(errorMessage);
     toast.error(errorMessage);
   } finally {

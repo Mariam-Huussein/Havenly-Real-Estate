@@ -4,11 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules"; // import required modules
-import { useAppContext } from "../../context/AppContext";
+import { usePropertyContext } from "../../context/PropertyContext";
 import Item from "../Item";
 
 const FeaturedProperties = () => {
-  const { properties } = useAppContext();
+  const { properties } = usePropertyContext();
 
   return (
     <>
