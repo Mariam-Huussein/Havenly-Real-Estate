@@ -1,5 +1,4 @@
 import React from "react";
-import Title from "./Title";
 
 const FrequentlyAskedQuestions = () => {
   const [openIndex, setOpenIndex] = React.useState(null);
@@ -46,7 +45,9 @@ const FrequentlyAskedQuestions = () => {
               />
               <div className="absolute top-5 left-5 right-5 border-yellow-50 border-solid border-2 bg-[#ffffffc9] p-3 rounded-2xl flex items-center gap-4 z-10">
                 <div>
-                  <h5 className="bold-16 text-sm mb-2">Trusted Real Estate Experts</h5>
+                  <h5 className="bold-16 text-sm mb-2">
+                    Trusted Real Estate Experts
+                  </h5>
                   <p className="text-xs bold-12">
                     Trust, clarity, and simplicity are at the core of everything
                     we do to make your property journey easy.

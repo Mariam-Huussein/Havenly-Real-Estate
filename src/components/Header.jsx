@@ -1,40 +1,35 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Navbar from "./Navbar";
-import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
-import { useAppContext } from "../context/AppContext";
+import { handleLogout } from "./../helpers/authHelpers";
+import AuthModal from "./AuthModal/AuthModal";
+
 const Header = () => {
   const [active, setActive] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
   const [showSearch, setshowSearch] = useState(false);
   const location = useLocation();
-  const { navigate } = useAppContext();
-  const { user } = useUser();
-  const { openSignIn } = useClerk();
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
-  const BookingIcon = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 36 36"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-Linecap="round"
-      stroke-Linejoin="round"
-      class="lucide lucide-scroll-text-icon lucide-scroll-text"
-    >
-      <path d="M15 12h-5" />
-      <path d="M15 8h-5" />
-      <path d="M19 17V5a2 2 0 0 0-2-2H4 12" />
-      <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1000-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 OV5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" />
-    </svg>
-  );
+  const handleUserLogout = () => {
+    handleLogout(() => {
+      window.location.href = "/";
+    });
+  };
+
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem("user");
+  //   if (storedUser) {
+  //     setUser(JSON.parse(storedUser));
+  //   }
+  // }, []);
+
+  const [user, setUser] = useState(null);
 
   const toggleMenu = () => setMenuOpened((prev) => !prev);
 
@@ -141,20 +136,16 @@ const Header = () => {
               <div className="group relative">
                 <div>
                   {user ? (
-                    <UserButton
-                    appearance={{}}
+                    <button
+                      onClick={() => handleUserLogout()}
+                      className="btn-secondary flexCenter gap-x-2 rounded-full"
                     >
-                      <UserButton.MenuItems>
-                        <UserButton.Action
-                          label="My Bookings"
-                          labelIcon={<BookingIcon />}
-                          onClick={() => navigate("/my-bookings")}
-                        />
-                      </UserButton.MenuItems>
-                    </UserButton>
+                      Log Out
+                      <LogoutIcon />
+                    </button>
                   ) : (
                     <button
-                      onClick={openSignIn}
+                      onClick={() => setShowAuthModal(true)}
                       className="btn-secondary flexCenter gap-x-2 rounded-full"
                     >
                       Login
@@ -166,6 +157,9 @@ const Header = () => {
             </div>
           </div>
         </div>
+        {showAuthModal && (
+          <AuthModal onClose={() => setShowAuthModal(false)} />
+        )}
       </header>
     </>
   );

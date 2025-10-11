@@ -1,10 +1,10 @@
 import React from "react";
-import Hero from "../components/Hero";
-import About from "../components/About";
-import FrequentlyAskedQuestions from "../components/FrequentlyAskedQuestions";
-import Cta from "../components/Cta";
-import Testimonial from "../components/Testimonial";
-import FeaturedProperties from "../components/FeaturedProperties";
+import Hero from "../components/HomeModal/Hero";
+import About from "../components/HomeModal/About";
+import FrequentlyAskedQuestions from "../components/HomeModal/FrequentlyAskedQuestions";
+import Cta from "../components/HomeModal/Cta";
+import Testimonial from "../components/HomeModal/Testimonial";
+import FeaturedProperties from "../components/HomeModal/FeaturedProperties";
 
 const Home = () => {
   return (

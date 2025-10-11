@@ -1,15 +1,11 @@
-import React from "react";
-import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import TuneIcon from "@mui/icons-material/Tune";
-
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules"; // import required modules
-import { useAppContext } from "../context/AppContext";
-import Item from "./Item";
+import { useAppContext } from "../../context/AppContext";
+import Item from "../Item";
 
 const FeaturedProperties = () => {
   const { properties } = useAppContext();

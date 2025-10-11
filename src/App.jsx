@@ -6,6 +6,10 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Listing from "./pages/Listing";
 import PropertyDetails from "./pages/PropertyDetails";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import MyBooking from "./pages/MyBooking";
+// import MyBooking from "./pages/MyBooking";
 
 function App() {
   return (
@@ -17,8 +21,10 @@ function App() {
         <Route path="/listing/:id" element={<PropertyDetails />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/my-bookings" element={<MyBooking />} />
       </Routes>
       <Footer />
+      <ToastContainer position="top-center" autoClose={3000} />
     </main>
   );
 }

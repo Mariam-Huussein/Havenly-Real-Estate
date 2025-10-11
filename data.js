@@ -139,3 +139,48 @@ export const dummyProperties = [
     updatedAt: "2025-04-10T06:28:50.013Z",
   },
 ];
+
+export const dummyBookingsData = [
+    {
+        "id": "67f76839994a731e97d3b8ce",
+        "user": "username",
+        "property": dummyProperties[1],
+        "agency": "Agency",
+        "checkInDate": "2025-04-30T00:00:00.000Z",
+        "checkOutDate": "2025-05-01T00:00:00.000Z",
+        "totalPrice": 299,
+        "guests": 4,
+        "status": "pending",
+        "createdAt": "2025-04-10T06:42:01.529Z",
+        "updatedAt": "2025-04-10T06:43:54.520Z",
+    },
+    {
+        "id": "67f76829994a731e97d3b8c3",
+        "user": "username",
+        "property": dummyProperties[0],
+        "agency": "Agency",
+        "checkInDate": "2025-04-27T00:00:00.000Z",
+        "checkOutDate": "2025-04-28T00:00:00.000Z",
+        "totalPrice": 399,
+        "guests": 3,
+        "status": "pending",
+        "paymentMethod": "Pay at Check-in",
+        "createdAt": "2025-04-10T06:41:45.873Z",
+        "updatedAt": "2025-04-10T06:41:45.873Z",
+    },
+    {
+        "id": "67f76810994a731e97d3b8b4",
+        "user": "username",
+        "property": dummyProperties[3],
+        "agency": "Agency",
+        "checkInDate": "2025-04-11T00:00:00.000Z",
+        "checkOutDate": "2025-04-12T00:00:00.000Z",
+        "totalPrice": 199,
+        "guests": 3,
+        "status": "pending",
+        "paymentMethod": "Pay at Check-in",
+        "isPaid": true,
+        "createdAt": "2025-04-10T06:41:20.501Z",
+        "updatedAt": "2025-04-10T06:41:20.501Z",
+    }
+]

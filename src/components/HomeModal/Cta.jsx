@@ -1,4 +1,3 @@
-import React from "react";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 const Cta = () => {
   return (

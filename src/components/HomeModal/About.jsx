@@ -1,12 +1,8 @@
-import React from "react";
-// import * as React from 'react';
-import Avatar from "@mui/material/Avatar";
-import AvatarGroup from "@mui/material/AvatarGroup";
-import Title from "./Title";
 import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 import MapIcon from "@mui/icons-material/Map";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import Title from "../Title";
 const About = () => {
   const clientsImage = [
     "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200",
@@ -15,19 +11,19 @@ const About = () => {
     "https://randomuser.me/api/portraits/men/75.jpg",
   ];
   const star = `                    
-  <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="#FACC15"
-                      stroke="#FACC15"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z" />
-                    </svg>`;
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="#FACC15"
+          stroke="#FACC15"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z" />
+        </svg>`;
 
   return (
     <>
@@ -64,7 +60,7 @@ const About = () => {
             </div>
             <div className="flex items-center divide-x divide-gray-300 mt-11">
               {/* Clients */}
-              <div className="flex items-center divide-x divide-gray-300">
+              <div className="flex flex-wrap gap-y-4 sm:justify-start justify-center items-center divide-x divide-gray-300">
                 <div className="flex -space-x-3 pr-3">
                   {clientsImage.map((clientImage, index) => (
                     <img
@@ -91,22 +87,19 @@ const About = () => {
                     users
                   </p>
                 </div>
-                <span className="text-sm font-medium text-white/80">
-                  +120 Happy Clients
-                </span>
               </div>
             </div>
           </div>
-              {/* Image (Right Side) */}
-              <div className="flex-1">
-                <div className="relative flex justify-end ">
-                  <img
-                    alt="AboutImg"
-                    className="rounded-3xl"
-                    src="/images/about.png"
-                  />
-                </div>
-              </div>
+          {/* Image (Right Side) */}
+          <div className="flex-1">
+            <div className="relative flex justify-end ">
+              <img
+                alt="AboutImg"
+                className="rounded-3xl"
+                src="/images/about.png"
+              />
+            </div>
+          </div>
         </div>
       </section>
     </>
