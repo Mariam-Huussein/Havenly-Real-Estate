@@ -11,6 +11,7 @@ import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
   const [active, setActive] = useState(false);
+  const [open, setOpen] = useState(false)
   const [menuOpened, setMenuOpened] = useState(false);
   const [showSearch, setshowSearch] = useState(false);
   const location = useLocation();

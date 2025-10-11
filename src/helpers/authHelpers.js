@@ -23,9 +23,6 @@ export const handleLogin = async (
       password: formData.password,
     });
 
-
-    console.log("Login Response:", res);
-
     const { token, userId, userName } = res.data.data;
 
     if (!token) throw new Error("Invalid response from server");

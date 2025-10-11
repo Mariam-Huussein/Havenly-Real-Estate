@@ -1,17 +1,19 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-const [user, setUser] = useState(() => {
-  try {
-    const storedUser = localStorage.getItem("user");
-    return storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null;
-  } catch {
-    return null;
-  }
-});
-
+  const [user, setUser] = useState(() => {
+    try {
+      const storedUser = localStorage.getItem("user");
+      return storedUser && storedUser !== "undefined"
+        ? JSON.parse(storedUser)
+        : null;
+    } catch {
+      return null;
+    }
+  });
 
   const [token, setToken] = useState(() => localStorage.getItem("token"));
 
@@ -30,6 +32,7 @@ const [user, setUser] = useState(() => {
     setToken(null);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    toast.success("You have been logged out.");
   };
 
   return (

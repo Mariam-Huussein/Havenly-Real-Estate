@@ -9,6 +9,7 @@ import PropertyDetails from "./pages/PropertyDetails";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MyBooking from "./pages/MyBooking";
+import NotFoundPage from "./components/NotFoundPage";
 // import MyBooking from "./pages/MyBooking";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <main>
       <Header />
       <Routes>
+        <Route path="*" element={<NotFoundPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/listing" element={<Listing />} />
         <Route path="/listing/:id" element={<PropertyDetails />} />
