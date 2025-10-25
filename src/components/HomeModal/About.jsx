@@ -3,6 +3,7 @@ import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 import MapIcon from "@mui/icons-material/Map";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import Title from "../Title";
+
 const About = () => {
   const clientsImage = [
     "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200",
@@ -27,7 +28,7 @@ const About = () => {
 
   return (
     <>
-      <section className="max-padd-container py-16 xl:py-28 !pt-36">
+      <section className="max-padd-container py-16 xl:py-28 !pt-36" id="about">
         {/* Container */}
         <div className="flex items-center flex-col lg:flex-row gap-12">
           {/* Info (Left Side) */}

@@ -1,6 +1,3 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-
 const Title = ({title1, title2, titleStyles, title2Styles, paragraphStyles, paragraph}) => {
   return (
     <div className={`${titleStyles}`}>

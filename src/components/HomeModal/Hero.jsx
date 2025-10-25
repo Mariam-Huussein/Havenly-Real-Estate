@@ -1,8 +1,5 @@
 import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
-import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
-import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
-import PersonIcon from "@mui/icons-material/Person";
-import SearchIcon from "@mui/icons-material/Search";
+import SearchForm from "./SearchForm";
 
 const Hero = () => {
   const cities = ["Abu Dhabi", "New York", "Toronto", "Los Angeles"];
@@ -33,7 +30,7 @@ const Hero = () => {
               </h2>
             </div>
             {/* Search / Booking Form */}
-            <form className="bg-white text-gray-500 rounded-lg px-6 py-4 flex flex-col lg:flex-row gap-4 lg:gap-x-8 max-w-md lg:max-w-full ring-1 ring-slate-900/5 relative">
+            {/* <form className="bg-white text-gray-500 rounded-lg px-6 py-4 flex flex-col lg:flex-row gap-4 lg:gap-x-8 max-w-md lg:max-w-full ring-1 ring-slate-900/5 relative">
               <div className="flex flex-col w-full">
                 <div className="flex items-center gap-2">
                   <PlaceOutlinedIcon />
@@ -96,7 +93,8 @@ const Hero = () => {
                 <SearchIcon />
                 <span>Search</span>
               </button>
-            </form>
+            </form> */}
+            <SearchForm />
           </div>
         </div>
       </section>

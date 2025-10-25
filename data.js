@@ -184,3 +184,9 @@ export const dummyBookingsData = [
         "updatedAt": "2025-04-10T06:41:20.501Z",
     }
 ]
+
+export const dummyDashboardData = {
+    "totalBookings": 3,
+    "totalRevenue": 897,
+    "bookings": dummyBookingsData
+}

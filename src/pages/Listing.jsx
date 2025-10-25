@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { usePropertyContext } from "../context/PropertyContext";
+import { useEffect, useState } from "react";
 import Item from "./../components/Item";
 import Checkbox from "@mui/material/Checkbox";
 import FormControl from "@mui/material/FormControl";
@@ -8,10 +7,55 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useFilteredProperties } from "../hooks/useFilteredProperties";
 import Pagination from "@mui/material/Pagination";
+import { fetchFeaturedProperties } from "../helpers/propertiesHelper";
+import toast from "react-hot-toast";
+import { searchRealEstate } from "../API/realEstateService";
 
 const Listing = () => {
-  const { properties } = usePropertyContext();
+  const [properties, setProperties] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageLimit, setPageLimit] = useState(9);
 
+  const queryParams = new URLSearchParams(location.search);
+  const destination = queryParams.get("destination");
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        setLoading(true);
+        if (destination) {
+          const data = await searchRealEstate(destination);
+          setProperties(data);
+        } else {
+          const res = await fetchFeaturedProperties(1, 9);
+          setProperties(res.data);
+        }
+      } catch (err) {
+        console.error("Error fetching properties:", err);
+        toast.error("Error fetching properties:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getData();
+  }, [destination]);
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const data = await fetchFeaturedProperties(pageNumber,pageLimit);
+  //       setProperties(data.data);
+  //       setTotalRecords(data.totalRecords);
+  //     } catch (err) {
+  //       console.error("Error fetching properties:", err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   getData();
+  // }, []);
   const sortOptions = ["All", "Relevant", "Low to High", "High to Low"];
 
   const propertyTypes = [
@@ -37,6 +81,7 @@ const Listing = () => {
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalRecords, setTotalRecords] = useState(0);
   const itemsPerPage = 9;
 
   const filteredProperties = useFilteredProperties(
@@ -183,7 +228,7 @@ const Listing = () => {
             {loading ? (
               // Skeleton placeholders
               <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-                {Array(6)
+                {Array(9)
                   .fill(0)
                   .map((_, i) => (
                     <div

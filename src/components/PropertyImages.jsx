@@ -19,11 +19,6 @@ const PropertyImages = ({ property }) => {
                 alt="image"
               />
               <div className="absolute inset-0 flex flex-col justify-end p-10 text-white bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                {/* <h1 className="text-3xl">Prompt engineers</h1>
-                <p className="text-sm">
-                  Bridging the gap between human intent and machine
-                  understanding through expert prompt design.
-                </p> */}
               </div>
             </div>
         );

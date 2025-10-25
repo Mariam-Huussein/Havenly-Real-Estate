@@ -1,12 +1,6 @@
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import {
-  login,
-  register,
-  forgotPassword,
-  resetPassword,
-} from "../services/authService";
-import {
   handleLogin,
   handleRegister,
   handleForgotPassword,

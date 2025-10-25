@@ -1,18 +1,19 @@
 import {
   login,
   register,
+  registerAsAgency,
   forgotPassword,
   resetPassword,
-} from "../services/authService";
-import { toast } from "react-toastify";
+} from "../API/authService";
+
+import toast from "react-hot-toast";
 
 export const handleLogin = async (
   formData,
   setLoading,
   setError,
   onClose,
-  setUser,
-  setToken
+  saveAuth
 ) => {
   setLoading(true);
   setError("");
@@ -23,18 +24,13 @@ export const handleLogin = async (
       password: formData.password,
     });
 
-    const { token, userId, userName } = res.data.data;
+    const data = res?.data?.data;
+    if (!data?.token) throw new Error("Invalid response from server");
 
-    if (!token) throw new Error("Invalid response from server");
+    saveAuth(data);
 
-    // نكوّن object user ونخزّنه في الـ context + localStorage
-    const user = { id: userId, userName };
-    setUser(user);
-    setToken(token);
-
-    toast.success("Login successful! 🎉");
+    toast.success(`Welcome back, ${data.userName}!`);
     onClose();
-
   } catch (err) {
     console.error("Login error:", err.response?.data || err.message);
     const errorMessage =
@@ -66,6 +62,39 @@ export const handleRegister = async (
   } catch (err) {
     const errorMessage = err.response?.data?.message || "Registration failed";
     setError(errorMessage);
+  } finally {
+    setLoading(false);
+  }
+};
+
+export const handleAgencyRegister = async (formData, setLoading, setError) => {
+  setLoading(true);
+  setError("");
+
+  try {
+    const res = await registerAsAgency({
+      agencyName: formData.agencyName,
+      email: formData.email,
+      phoneNumber: formData.phoneNumber,
+      password: formData.password,
+    });
+
+    toast.success("Agency account created successfully! You can log in now.");
+
+    return {
+      succeeded: true,
+      message: "Agency registered successfully",
+      data: res.data,
+    };
+  } catch (err) {
+    const errorMessage =
+      err.response?.data?.message || "Agency registration failed";
+    setError(errorMessage);
+    toast.error(errorMessage);
+    return {
+      succeeded: false,
+      message: errorMessage,
+    };
   } finally {
     setLoading(false);
   }
@@ -122,10 +151,27 @@ export const handleResetPassword = async (
 };
 
 export const handleLogout = (onLogoutCallback) => {
-  localStorage.removeItem("token");
   localStorage.removeItem("user");
-
-  toast.info("You have been logged out.");
+  localStorage.removeItem("userRoles");
+  localStorage.removeItem("token");
+  toast.success("You have been logged out.");
 
   if (onLogoutCallback) onLogoutCallback();
+};
+
+export const handleResendOtp = async (formData, setLoading, setError) => {
+  if (!formData.email) return setError("Please enter your email");
+  setLoading(true);
+  setError("");
+
+  try {
+    await resendOtp({ email: formData.email.trim() });
+    toast.success("A new OTP has been sent to your email.");
+  } catch (err) {
+    const errorMessage = err.response?.data?.message || "Failed to resend OTP";
+    setError(errorMessage);
+    toast.error(errorMessage);
+  } finally {
+    setLoading(false);
+  }
 };

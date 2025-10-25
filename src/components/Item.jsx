@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import BedIcon from "@mui/icons-material/Bed";
 import BathtubIcon from "@mui/icons-material/Bathtub";
@@ -15,7 +14,7 @@ const Item = ({ property }) => {
         {/* Image */}
         <div className="relative">
           <img
-            src={property.images[0]}
+            src={property.defaultImage}
             alt={property.title}
             className="h-[13rem] w-full aspect-square object-cover rounded-t-xl"
           />

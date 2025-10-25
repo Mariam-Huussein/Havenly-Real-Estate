@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { usePropertyContext } from "../context/PropertyContext";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PropertyImages from "../components/PropertyImages";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
@@ -14,16 +13,64 @@ import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import EmailIcon from "@mui/icons-material/Email";
+import RoleWarningModal from "../components/RoleWarningModal";
+import toast from "react-hot-toast";
+import { getRealEstateById } from "../API/realEstateService";
+import { createBooking } from "../API/bookingService";
 
 const PropertyDetails = () => {
-  const { properties } = usePropertyContext();
   const [property, setProperty] = useState(null);
   const { id } = useParams();
+  const [showWarning, setShowWarning] = useState(false);
+  const userRoles = JSON.parse(localStorage.getItem("userRoles")) || [];
+  const [formData, setFormData] = useState({
+    startDate: "",
+    endDate: "",
+    guests: 1,
+  });
+
+  const handleBooking = async (e) => {
+    e.preventDefault();
+
+    if (!userRoles.includes("User")) {
+      setShowWarning(true);
+      return;
+    }
+
+    if (!formData.startDate || !formData.endDate) {
+      toast.error("Please select both start and end dates.");
+      return;
+    }
+
+    try {
+      const bookingData = {
+        guest: Number(formData.guests),
+        userId:localStorage.getItem("userId") ,
+        realEstateId: Number(id),
+        startDate: new Date(formData.startDate).toISOString(),
+        endDate: new Date(formData.endDate).toISOString(),
+      };
+
+      const res = await createBooking(bookingData);
+      toast.success("Booking created successfully!");
+    } catch (error) {
+      toast.error("Error fetching property");
+      console.error("Error fetching property:", error);
+    }
+  };
 
   useEffect(() => {
-    const property = properties.find((property) => property.id === id);
-    property && setProperty(property);
-  }, [properties]);
+    const fetchProperty = async () => {
+      try {
+        const data = await getRealEstateById(id);
+        setProperty(data.data);
+      } catch (error) {
+        console.error("Error fetching property:", error);
+        toast.error("Error fetching property:", error);
+      }
+    };
+    fetchProperty();
+  }, [id]);
 
   return (
     property && (
@@ -80,7 +127,7 @@ const PropertyDetails = () => {
                 <p className="mb-4">{property.description}</p>
               </div>
               <h4 className="h4 mt-6 mb-2">Amenities</h4>
-              <div className="flex gap-3">
+              <div className="flex gap-3 flex-wrap">
                 {property.amenities &&
                   property.amenities.map((amenity, idx) => (
                     <div
@@ -93,49 +140,65 @@ const PropertyDetails = () => {
               </div>
 
               {/* Check Form */}
-              <form className="text-gray-500 bg-secondary/10 rounded-lg px-6 py-4 flex flex-col lg:flex-row gap-4 max-w-md lg:max-w-full ring-1 ring-slate-900/5 relative mt-10">
-                <div className="flex flex-col w-full">
-                  <div className="flex items-center gap-2">
-                    <CalendarMonthOutlinedIcon />
-                    <label htmlFor="checkInDate">Check in</label>
+              <div className="flex lg:justify-start justify-center w-full">
+                <form className="text-gray-500 bg-secondary/10 rounded-lg px-6 py-4 flex flex-col lg:flex-row gap-4 max-w-md w-[-webkit-fill-available] lg:max-w-full ring-1 ring-slate-900/5 relative mt-10">
+                  <div className="flex flex-col w-full">
+                    <div className="flex items-center gap-2">
+                      <CalendarMonthOutlinedIcon />
+                      <label htmlFor="checkInDate">Check in</label>
+                    </div>
+                    <input
+                      id="checkInDate"
+                      type="date"
+                      value={formData.startDate}
+                      onChange={(e) =>
+                        setFormData({ ...formData, startDate: e.target.value })
+                      }
+                      className="rounded bg-secondary/10 border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none"
+                    />
                   </div>
-                  <input
-                    min="2025-10-09"
-                    id="checkInDate"
-                    className="rounded bg-secondary/10 border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none"
-                    type="date"
-                  />
-                </div>
-                <div className="flex flex-col w-full">
-                  <div className="flex items-center gap-2">
-                    <CalendarMonthOutlinedIcon />
-                    <label htmlFor="checkOutDate">Check out</label>
+                  <div className="flex flex-col w-full">
+                    <div className="flex items-center gap-2">
+                      <CalendarMonthOutlinedIcon />
+                      <label htmlFor="checkOutDate">Check out</label>
+                    </div>
+                    <input
+                      id="checkOutDate"
+                      type="date"
+                      value={formData.endDate}
+                      onChange={(e) =>
+                        setFormData({ ...formData, endDate: e.target.value })
+                      }
+                      className="rounded bg-secondary/10 border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none"
+                    />
                   </div>
-                  <input
-                    id="checkOutDate"
-                    className="rounded bg-secondary/10 border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none"
-                    type="date"
-                  />
-                </div>
-                <div className="flex flex-col w-full">
-                  <div className="flex items-center gap-2">
-                    <PersonIcon />
-                    <label htmlFor="guests">Guests</label>
+                  <div className="flex flex-col w-full">
+                    <div className="flex items-center gap-2">
+                      <PersonIcon />
+                      <label htmlFor="guests">Guests</label>
+                    </div>
+                    <input
+                      id="guests"
+                      type="number"
+                      min="1"
+                      max="12"
+                      value={formData.guests}
+                      onChange={(e) =>
+                        setFormData({ ...formData, guests: e.target.value })
+                      }
+                      className="rounded bg-secondary/10 border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none"
+                    />
                   </div>
-                  <input
-                    min="1"
-                    max="4"
-                    id="guests"
-                    className="rounded bg-secondary/10 border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none"
-                    placeholder="1"
-                    type="number"
-                  />
-                </div>
-                <button className="flexCenter gap-1 rounded-md btn-dark min-w-44">
-                  <SearchIcon />
-                  <span>Check Dates</span>
-                </button>
-              </form>
+                  <button
+                    type="button"
+                    onClick={handleBooking}
+                    className="flexCenter gap-1 rounded-md btn-dark min-w-max px-3.5"
+                  >
+                    <SearchIcon />
+                    <span>Check Dates</span>
+                  </button>
+                </form>
+              </div>
             </div>
             {/* Agency Info */}
             <div className="flex-2 w-full max-w-sm">
@@ -160,7 +223,7 @@ const PropertyDetails = () => {
 
                   <div>
                     <h5 className="text-lg font-medium text-slate-700">
-                      {property.agency?.name || "Unknown"}
+                      {property.agencyContact.agencyName || "Unknown"}
                     </h5>
                     <p className="text-sm text-slate-500">{property.city}</p>
                   </div>
@@ -172,10 +235,10 @@ const PropertyDetails = () => {
                   <div className="flex flex-col">
                     <span className="text-sm text-slate-500">Phone</span>
                     <a
-                      href={`tel:${property.agency?.phone}`}
+                      href={`tel:${property.agencyContact?.agencyPhone}`}
                       className="text-slate-700 hover:text-gray-950 font-medium"
                     >
-                      {property.agency?.phone || "Unknown"}
+                      {property.agencyContact?.agencyPhone || "Unknown"}
                     </a>
                   </div>
                 </div>
@@ -186,10 +249,10 @@ const PropertyDetails = () => {
                   <div className="flex flex-col">
                     <span className="text-sm text-slate-500">E-mail</span>
                     <a
-                      href={`mailto:${property.agency?.email}`}
+                      href={`mailto:${property.agencyContact?.agencyEmail}`}
                       className="text-slate-700  hover:text-gray-950 font-medium"
                     >
-                      {property.agency?.email || "Unknown"}
+                      {property.agencyContact?.agencyEmail || "Unknown"}
                     </a>
                   </div>
                 </div>
@@ -197,6 +260,12 @@ const PropertyDetails = () => {
             </div>
           </div>
         </div>
+        {showWarning && (
+          <RoleWarningModal
+            message="Only users can make bookings. Please log in as a User to continue."
+            onClose={() => setShowWarning(false)}
+          />
+        )}
       </section>
     )
   );

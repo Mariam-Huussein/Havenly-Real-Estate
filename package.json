@@ -1,5 +1,5 @@
 {
-  "name": "crud",
+  "name": "havenly",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -17,7 +17,7 @@
     "@mui/material": "^7.3.4",
     "axios": "^1.12.2",
     "firebase": "^12.3.0",
-    "framer-motion": "^12.23.16",
+    "framer-motion": "^12.23.24",
     "i18next": "^25.5.2",
     "i18next-browser-languagedetector": "^8.2.0",
     "i18next-http-backend": "^3.0.2",
