@@ -3,7 +3,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import PersonIcon from "@mui/icons-material/Person";
-import { searchRealEstate } from "../../API/realEstateService";
 import { useNavigate } from "react-router-dom";
 
 function SearchForm() {

@@ -23,10 +23,18 @@ export const getRealEstateById = async (id) => {
 };
 
 // 🔍 Search Real Estate by destination
+// export const searchRealEstate = async (destination) => {
+//   const res = await axiosClient.get("/RealEstate/Search", {
+//     params: { destination },
+//   });
+//   return res.data;
+// };
+// 🔍 Search Real Estate by destination
 export const searchRealEstate = async (destination) => {
-  const res = await axiosClient.get("/RealEstate/Search", {
-    params: { destination },
-  });
+  const encoded = encodeURIComponent(destination.trim());
+  const res = await axiosClient.get(
+    `/RealEstate/Search?destination=${encoded}`
+  );
   return res.data;
 };
 

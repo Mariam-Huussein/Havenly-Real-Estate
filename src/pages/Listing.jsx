@@ -24,8 +24,10 @@ const Listing = () => {
       try {
         setLoading(true);
         if (destination) {
+          console.log(destination)
           const data = await searchRealEstate(destination);
-          setProperties(data);
+          console.log(data)
+          setProperties(data.data);
         } else {
           const res = await fetchFeaturedProperties(1, 9);
           setProperties(res.data);

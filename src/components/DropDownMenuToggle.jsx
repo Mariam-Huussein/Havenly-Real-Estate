@@ -16,13 +16,6 @@ const DropDownMenuToggle = () => {
     >
       <div className="p-2">
         <button
-          onClick={() => navigate("/profile")}
-          className="block w-full text-left rounded-lg px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-        >
-          My Profile
-        </button>
-
-        <button
           onClick={() => navigate(isAgency ? "/owner" : "/my-bookings")}
           className="block w-full text-left rounded-lg px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
         >

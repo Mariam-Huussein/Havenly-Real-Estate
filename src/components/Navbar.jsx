@@ -21,6 +21,14 @@ const Navbar = ({
     { path: "/home", title: "ABOUT", targetId: "about" },
   ];
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!destination) return;
+
+    navigate(`/listing?destination=${encodeURIComponent(destination)}`);
+  };
+
   return (
     <nav
       className={`hidden lg:flex items-center justify-center gap-10 ${
@@ -76,38 +84,8 @@ const Navbar = ({
         ))}
       </ul>
 
-      {/* Right Side: Search + User */}
+      {/* Right Side: User */}
       <div className="flex items-center gap-6">
-        {/* Search Section */}
-        <div className="relative flex items-center">
-          {/* Search Input */}
-          <div
-            className={`transition-all duration-300 ease-in-out ring-1 ring-slate-900/10 rounded-full overflow-hidden ${
-              showSearch
-                ? "w-[260px] opacity-100 px-4 py-2"
-                : "w-0 opacity-0 px-2 py-0 pointer-events-none"
-            } ${active ? "bg-gray-100" : "bg-white/90"}`}
-          >
-            <input
-              type="text"
-              placeholder="Search properties..."
-              className="w-full text-sm outline-none bg-transparent pr-8 placeholder:text-gray-500"
-            />
-          </div>
-
-          {/* Search Icon */}
-          <div
-            onClick={() => setShowSearch((prev) => !prev)}
-            className={`absolute right-0 p-[8px] rounded-full cursor-pointer z-10 transition ${
-              active ? "bg-gray-100" : "bg-white/70"
-            } hover:bg-gray-200`}
-          >
-            <SearchIcon
-              className={`${active ? "text-gray-700" : "text-gray-800"}`}
-            />
-          </div>
-        </div>
-
         {/* User Section */}
         <div className="relative flex items-center">
           {user ? (
