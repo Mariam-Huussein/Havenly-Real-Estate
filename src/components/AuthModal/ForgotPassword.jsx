@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { FaEnvelope } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import { handleForgotPassword } from "../../helpers/authHelpers";
-import Logo from "../logo";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -22,12 +21,6 @@ function ForgotPassword() {
 
   return (
     <>
-      <div>
-        <div className="flex items-center justify-center gap-1 mb-6">
-            <Logo/>
-        </div>
-      </div>
-
       <h2 className="text-2xl font-semibold text-center mb-4">
         Forgot Password
       </h2>
